@@ -4,9 +4,9 @@
       "id": "1",
       "nome": "Teclado Mecânico RGB",
       "descricao": "Switch Blue, layout ABNT2 com fio destacável.",
-      "preco": 350.00,
+      "preco": 350,
       "categoria": "perifericos",
-      "estoque": 5,
+      "estoque": 6,
       "promocao": true,
       "nota": 4.5
     },
@@ -14,7 +14,7 @@
       "id": "2",
       "nome": "Mouse Gamer 12000 DPI",
       "descricao": "Sensor óptico de alta precisão e peso regulável.",
-      "preco": 180.00,
+      "preco": 180,
       "categoria": "perifericos",
       "estoque": 12,
       "promocao": false,
@@ -24,7 +24,7 @@
       "id": "3",
       "nome": "Monitor 24 polegadas 144Hz",
       "descricao": "Painel IPS com 1ms de resposta e ajuste de altura.",
-      "preco": 1200.00,
+      "preco": 1200,
       "categoria": "monitores",
       "estoque": 1,
       "promocao": false,
@@ -34,17 +34,17 @@
       "id": "4",
       "nome": "Caneca Termo-sensível Star Wars",
       "descricao": "Muda de estampa quando adicionado líquido quente.",
-      "preco": 60.00,
+      "preco": 60,
       "categoria": "geek",
       "estoque": 25,
       "promocao": true,
-      "nota": 4.0
+      "nota": 4
     },
     {
       "id": "5",
       "nome": "Livro: Clean Code",
       "descricao": "Manual de boas práticas de software para desenvolvedores.",
-      "preco": 95.00,
+      "preco": 95,
       "categoria": "livros",
       "estoque": 0,
       "promocao": false,
@@ -54,7 +54,7 @@
       "id": "6",
       "nome": "Action Figure Batman",
       "descricao": "Miniatura articulada de 18cm com acessórios.",
-      "preco": 290.00,
+      "preco": 290,
       "categoria": "geek",
       "estoque": 4,
       "promocao": false,
@@ -64,7 +64,7 @@
       "id": "7",
       "nome": "Headset Gamer 7.1 Surround",
       "descricao": "Isolamento acústico e microfone com cancelamento de ruído.",
-      "preco": 420.00,
+      "preco": 420,
       "categoria": "perifericos",
       "estoque": 8,
       "promocao": true,
@@ -74,11 +74,11 @@
       "id": "8",
       "nome": "Comic Book: O Cavaleiro das Trevas",
       "descricao": "Edição definitiva encadernada e capa dura.",
-      "preco": 110.00,
+      "preco": 110,
       "categoria": "livros",
       "estoque": 15,
       "promocao": false,
-      "nota": 5.0
+      "nota": 5
     }
   ],
   "usuarios": [
@@ -87,21 +87,21 @@
       "nome": "Ana Silva",
       "email": "ana@email.com",
       "nivel": "admin",
-      "carteira_saldo": 1500.00
+      "carteira_saldo": 1500
     },
     {
       "id": "2",
       "nome": "Bruno Souza",
       "email": "bruno@email.com",
       "nivel": "vip",
-      "carteira_saldo": 300.00
+      "carteira_saldo": 300
     },
     {
       "id": "3",
       "nome": "Carlos Lima",
       "email": "carlos@email.com",
       "nivel": "comum",
-      "carteira_saldo": 45.00
+      "carteira_saldo": 45
     }
   ],
   "pedidos": [
@@ -112,7 +112,7 @@
       "quantidade": 1,
       "data": "2026-05-10",
       "status": "entregue",
-      "valor_pago": 350.00
+      "valor_pago": 350
     },
     {
       "id": "102",
@@ -121,7 +121,7 @@
       "quantidade": 2,
       "data": "2026-05-24",
       "status": "pendente",
-      "valor_pago": 120.00
+      "valor_pago": 120
     },
     {
       "id": "103",
@@ -130,7 +130,7 @@
       "quantidade": 1,
       "data": "2026-05-25",
       "status": "entregue",
-      "valor_pago": 180.00
+      "valor_pago": 180
     }
   ],
   "cupons": [
