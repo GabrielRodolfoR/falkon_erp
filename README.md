@@ -1,6 +1,9 @@
 # Falkon
 Projeto desenvolvido para o desafio acadêmico da Falkon, um e-commerce especializado em produtos Geek, Tech e Gamer.
 
+## Video do projeto:
+https://drive.google.com/file/d/1g8vSjvqZG3X5mZqa0ERo9is9eaNbUhVd/view?usp=sharing
+
 ## Desafio de Negócio
 A venda de produtos sem estoque pode gerar insatisfação dos clientes e impactar negativamente a imagem da empresa. Para solucionar esse problema, foi desenvolvido um sistema de gerenciamento de estoque (ERP) que permite o acompanhamento e atualização das quantidades disponíveis em tempo real.
 
