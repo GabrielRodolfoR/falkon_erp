@@ -12,7 +12,7 @@ export const StockTab = ({ products = [], onAdjustStockClick }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {products.map((prod) => {
-          const productCapacityMax = 30;
+          const productCapacityMax = Number(prod.capacidadeMaxima ?? 0);
           const percent = Math.min((prod.estoque / productCapacityMax) * 100, 100);
           
           let barColor = "bg-accent-green";
@@ -22,6 +22,12 @@ export const StockTab = ({ products = [], onAdjustStockClick }) => {
             barColor = "bg-accent-yellow";
           }
 
+          const statusConfig = prod.estoque === 0 // Lógica de status e cores do estoque
+            ? { label: "Sem estoque", className: "bg-accent-red text-white border-accent-red" }
+            : prod.estoque <= 3
+              ? { label: "Estoque baixo", className: "bg-accent-yellow text-[#111827] border-accent-yellow" }
+              : { label: "Disponível", className: "bg-accent-green text-white border-accent-green" };
+
           return (
             <Card key={prod.id} className="p-5 flex flex-col justify-between h-40">
               <div className="flex justify-between items-start gap-4">
@@ -29,8 +35,8 @@ export const StockTab = ({ products = [], onAdjustStockClick }) => {
                   <h4 className="font-semibold text-text-primary truncate">{prod.nome}</h4>
                   <p className="text-[10px] text-text-secondary mt-0.5 uppercase tracking-wide">{prod.categoria}</p>
                 </div>
-                <Badge variant={prod.estoque === 0 ? "danger" : prod.estoque <= 3 ? "warning" : "success"}>
-                  {prod.estoque} un
+                <Badge className={statusConfig.className}>
+                  {statusConfig.label}
                 </Badge>
               </div>
             

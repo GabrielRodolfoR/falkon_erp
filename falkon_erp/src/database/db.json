@@ -6,7 +6,8 @@
       "descricao": "Switch Blue, layout ABNT2 com fio destacável.",
       "preco": 350,
       "categoria": "perifericos",
-      "estoque": 6,
+      "estoque": 2,
+      "capacidadeMaxima": 40,
       "promocao": true,
       "nota": 4.5
     },
@@ -16,7 +17,8 @@
       "descricao": "Sensor óptico de alta precisão e peso regulável.",
       "preco": 180,
       "categoria": "perifericos",
-      "estoque": 12,
+      "estoque": 9,
+      "capacidadeMaxima": 20,
       "promocao": false,
       "nota": 4.8
     },
@@ -26,7 +28,8 @@
       "descricao": "Painel IPS com 1ms de resposta e ajuste de altura.",
       "preco": 1200,
       "categoria": "monitores",
-      "estoque": 1,
+      "estoque": 4,
+      "capacidadeMaxima": 15,
       "promocao": false,
       "nota": 4.2
     },
@@ -37,6 +40,7 @@
       "preco": 60,
       "categoria": "geek",
       "estoque": 25,
+      "capacidadeMaxima": 50,
       "promocao": true,
       "nota": 4
     },
@@ -47,6 +51,7 @@
       "preco": 95,
       "categoria": "livros",
       "estoque": 0,
+      "capacidadeMaxima": 25,
       "promocao": false,
       "nota": 4.9
     },
@@ -57,6 +62,7 @@
       "preco": 290,
       "categoria": "geek",
       "estoque": 4,
+      "capacidadeMaxima": 18,
       "promocao": false,
       "nota": 4.6
     },
@@ -67,6 +73,7 @@
       "preco": 420,
       "categoria": "perifericos",
       "estoque": 8,
+      "capacidadeMaxima": 22,
       "promocao": true,
       "nota": 3.9
     },
@@ -77,8 +84,27 @@
       "preco": 110,
       "categoria": "livros",
       "estoque": 15,
+      "capacidadeMaxima": 30,
       "promocao": false,
       "nota": 5
+    },
+    {
+      "nome": "Introdução ao Teste de Software",
+      "descricao": "Introdução aos testes de Software e boas práticas (Produto também criado para fins de testes)",
+      "preco": 30,
+      "categoria": "livros",
+      "estoque": 2,
+      "capacidadeMaxima": 30,
+      "id": "9"
+    },
+    {
+      "nome": "Testes intermediários de Software",
+      "descricao": "Esperamos que aquilo que estava funcionando, permaneça funcionando, mesmo sem eu saber o que foi desenvolvido",
+      "preco": 1,
+      "categoria": "livros",
+      "estoque": 67,
+      "capacidadeMaxima": 1,
+      "id": 10
     }
   ],
   "usuarios": [

@@ -3,7 +3,8 @@ import { useOutletContext } from "react-router-dom";
 import { CircleCheck } from "lucide-react";
 import { ProductsTab } from "../components/ProductsTab";
 import { AdjustStockModal } from "../components/AdjustStockModal";
-import { updateProduct } from "../services/productsServices";
+import { CreateProductModal } from "../components/CreateProductModal";
+import { createProduct, updateProduct } from "../services/productsServices";
 
 export default function ProductsCatalog() {
   const { products, loadData } = useOutletContext();
@@ -11,22 +12,43 @@ export default function ProductsCatalog() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [adjustQuantity, setAdjustQuantity] = useState(0);
   const [isAdjustModalOpen, setIsAdjustModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSaveStock = async () => {
-    if (!selectedProduct) return;
+  const handleSaveStock = async (updatedProduct) => {
+    if (!selectedProduct || !updatedProduct) return;
     try {
-      const updated = {
-        ...selectedProduct,
-        estoque: adjustQuantity
-      };
-      await updateProduct(selectedProduct.id, updated);
-      setSuccessMessage(`Estoque de "${selectedProduct.nome}" atualizado para ${adjustQuantity}!`);
+      await updateProduct(selectedProduct.id, updatedProduct);
+      setSuccessMessage(`"${updatedProduct.nome}" atualizado com sucesso!`);
       setIsAdjustModalOpen(false);
       setTimeout(() => setSuccessMessage(""), 3500);
       await loadData();
     } catch (error) {
-      console.error("Erro ao salvar alteração de estoque:", error);
+      console.error("Erro ao salvar alteração de produto:", error);
+    }
+  };
+
+  const handleCreateProduct = async (newProduct) => {
+    if (!newProduct) return;
+    try {
+      const nextId = products.reduce((max, product) => {
+        const numericId = Number(product.id);
+        return Number.isFinite(numericId) ? Math.max(max, numericId) : max;
+      }, 0) + 1;
+
+      await createProduct({
+        ...newProduct,
+        id: nextId,
+        estoque: Number(newProduct.estoque || 0),
+        preco: Number(newProduct.preco || 0),
+        capacidadeMaxima: Number(newProduct.capacidadeMaxima || 30)
+      });
+      setSuccessMessage(`"${newProduct.nome}" cadastrado com sucesso!`);
+      setIsCreateModalOpen(false);
+      setTimeout(() => setSuccessMessage(""), 3500);
+      await loadData();
+    } catch (error) {
+      console.error("Erro ao criar produto:", error);
     }
   };
 
@@ -49,6 +71,10 @@ export default function ProductsCatalog() {
           setAdjustQuantity(prod.estoque);
           setIsAdjustModalOpen(true);
         }}
+        onAddProductClick={() => {
+          setSelectedProduct(null);
+          setIsCreateModalOpen(true);
+        }}
       />
 
       <AdjustStockModal 
@@ -58,6 +84,12 @@ export default function ProductsCatalog() {
         adjustQuantity={adjustQuantity}
         setAdjustQuantity={setAdjustQuantity}
         onSave={handleSaveStock}
+      />
+
+      <CreateProductModal 
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSave={handleCreateProduct}
       />
     </div>
   );

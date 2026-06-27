@@ -12,20 +12,16 @@ export default function StockLevels() {
   const [isAdjustModalOpen, setIsAdjustModalOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSaveStock = async () => {
-    if (!selectedProduct) return;
+  const handleSaveStock = async (updatedProduct) => {
+    if (!selectedProduct || !updatedProduct) return;
     try {
-      const updated = {
-        ...selectedProduct,
-        estoque: adjustQuantity
-      };
-      await updateProduct(selectedProduct.id, updated);
-      setSuccessMessage(`Estoque de "${selectedProduct.nome}" atualizado para ${adjustQuantity}!`);
+      await updateProduct(selectedProduct.id, updatedProduct);
+      setSuccessMessage(`"${updatedProduct.nome}" atualizado com sucesso!`);
       setIsAdjustModalOpen(false);
       setTimeout(() => setSuccessMessage(""), 3500);
       await loadData();
     } catch (error) {
-      console.error("Erro ao salvar alteração de estoque:", error);
+      console.error("Erro ao salvar alteração de produto:", error);
     }
   };
 

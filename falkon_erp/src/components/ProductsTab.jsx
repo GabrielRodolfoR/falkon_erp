@@ -1,4 +1,4 @@
-import { Search, Pencil } from "lucide-react";
+import { Search, Pencil, Plus } from "lucide-react";
 import { Card } from "./ui/Card";
 import { Input } from "./ui/Input";
 import { Badge } from "./ui/Badge";
@@ -8,7 +8,8 @@ export const ProductsTab = ({
   products = [], 
   searchQuery = "", 
   setSearchQuery, 
-  onAdjustStockClick 
+  onAdjustStockClick,
+  onAddProductClick
 }) => {
   const filteredProducts = products.filter(p => 
     p.nome.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -24,15 +25,25 @@ export const ProductsTab = ({
           <p className="text-xs text-text-secondary mt-1">Consulta e gerenciamento de inventário operacional em tempo real.</p>
         </div>
 
-        <div className="relative w-full sm:w-64 text-left">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary/40" />
-          <Input 
-            type="text" 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Pesquisar por nome ou categoria..." 
-            className="pl-9 w-full"
-          />
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+          <div className="relative w-full sm:w-64 text-left">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary/40" />
+            <Input 
+              type="text" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Pesquisar por nome ou categoria..." 
+              className="pl-9 w-full"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={onAddProductClick}
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-accent-green/30 bg-accent-green/10 px-3 py-2 text-sm font-semibold text-accent-green transition-all hover:bg-accent-green/20"
+          >
+            <Plus className="w-4 h-4" />
+            Novo produto
+          </button>
         </div>
       </div>
 
@@ -56,16 +67,11 @@ export const ProductsTab = ({
             </THead>
             <TBody>
               {filteredProducts.map((prod) => {
-                let statusVariant = "success";
-                let statusText = "Disponível";
-                
-                if (prod.estoque === 0) {
-                  statusVariant = "danger";
-                  statusText = "Esgotado";
-                } else if (prod.estoque >= 1 && prod.estoque <= 3) {
-                  statusVariant = "warning";
-                  statusText = "Estoque Baixo";
-                }
+                const statusConfig = prod.estoque === 0
+                  ? { label: "Sem estoque", className: "bg-accent-red text-white border-accent-red" }
+                  : prod.estoque <= 3
+                    ? { label: "Estoque baixo", className: "bg-accent-yellow text-[#111827] border-accent-yellow" }
+                    : { label: "Disponível", className: "bg-accent-green text-white border-accent-green" };
 
                 return (
                   <TR key={prod.id}>
@@ -78,7 +84,7 @@ export const ProductsTab = ({
                     <TD className="text-right font-bold text-text-primary">{prod.estoque} un</TD>
                     <TD className="text-center">
                       <div className="flex justify-center">
-                        <Badge variant={statusVariant}>{statusText}</Badge>
+                        <Badge className={statusConfig.className}>{statusConfig.label}</Badge>
                       </div>
                     </TD>
                     <TD className="text-right pr-6">
